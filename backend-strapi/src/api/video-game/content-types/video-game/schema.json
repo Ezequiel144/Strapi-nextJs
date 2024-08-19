@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "video_games",
+  "info": {
+    "singularName": "video-game",
+    "pluralName": "video-games",
+    "displayName": "video game",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": false,
+      "maxLength": 150,
+      "minLength": 1
+    },
+    "launch": {
+      "type": "date"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "platfroms": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::platfrom.platfrom",
+      "inversedBy": "video_games"
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "video_games"
+    }
+  }
+}
